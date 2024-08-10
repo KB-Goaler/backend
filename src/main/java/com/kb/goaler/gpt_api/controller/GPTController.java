@@ -80,10 +80,8 @@ public class GPTController {
             // 1. @GetMapping("/{accountBookIdx}/history/ai")에서 데이터 가져오기
             String historyUrl = "http://localhost:8080/api/v1/account-books/" + accountBookIdx + "/history/ai";
             String historyResponse = restTemplate.getForObject(historyUrl, String.class);
-
             // 2. GPT에게 보낼 프롬프트 생성
             String prompt = historyResponse + " 이 멤버들의 가계부를 보고 소비경향을 분석해줘. 밝고 활기찬 톤의 존댓말로 부탁해. 누가 가장 많은 소비를 하는지, 고정 수입과 지출은 어떤 것이 있는지, 멤버별 어떤 카테고리에 지출을 많이하는지, 가장 많이 소비한 카테고리를 줄이라는 충고를 포함해서 5문장의 줄글로 말해줘. " ;
-
 
             // 3. GPT API 호출
             GPTRequest gptRequest = new GPTRequest(model, prompt, 0.1, 250, 0, 0, -1);
